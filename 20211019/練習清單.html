@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <form action="" id="form">
+    <input type="text" name="" id="text">
+    <input type="submit" value="送出">
+  </form>
+  <ul id="list"></ul>
+  <script src="./jquery-3.6.0.min.js"></script>
+  <script>
+    // 當表單送出時
+    $("#form").submit(function(e) {
+      // 停止送出跳頁動作
+      e.preventDefault()
+      // 在清單裡新增一筆
+      $('#list').append(`
+        <li>
+          ${$('#text').val()}
+          <input type="button" value="x" class="del">
+        </li>
+      `)
+      // 清空輸入欄位
+      $('#text').val('')
+    })
+    // 當點到 #list 裡面的 input 時
+    $('#list').on('click', 'input', function() {
+      // 將點到的按鈕的上一層 li 移除
+      $(this).parent().remove()
+    })
+  </script>
+</body>
+</html>
